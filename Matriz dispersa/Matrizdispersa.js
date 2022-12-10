@@ -92,8 +92,12 @@ class Matriz {
 
     exportRender() {
         console.log(this.configraph());
-        d3.select("#graphMatriz").graphviz().renderDot(this.configraph());
+        d3.select("#lienzo").graphviz()
+        .width(900)
+        .height(500)
+        .renderDot(this.configraph())
     }
+
 
     configraph() {
         let xela = "";
