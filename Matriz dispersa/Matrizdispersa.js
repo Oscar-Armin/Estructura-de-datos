@@ -85,7 +85,7 @@ class Matriz {
 
             if (aux.next == null) {
                 aux.next = cell;
-                cell.up = aux;
+                cell.prev = aux;
             }
         }
     }
@@ -358,6 +358,12 @@ class Header {
 
 
 const matrizDispersa = new Matriz();
-matrizDispersa.insertar(1,2,"Hola");
+matrizDispersa.insertar("December",1,"Hola");
+matrizDispersa.insertar("November",1,"Hola");
+matrizDispersa.insertar("January",1,"Hola");
+matrizDispersa.insertar("December",3,"Hola");
+matrizDispersa.insertar("November",3,"Hola");
+matrizDispersa.insertar("January",3,"Hola");
+matrizDispersa.insertar("January",2,"Hola");
 
 matrizDispersa.exportRender()
