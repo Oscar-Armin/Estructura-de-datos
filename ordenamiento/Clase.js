@@ -10,10 +10,16 @@ class ListaDoble{
   constructor(){
     this.head = null;
     this.tail = null;
+    this.size = 0;
+  }
+
+  getSize(){
+    return this.size;
   }
 
   insert(_value){
     var newNode = new Node(_value);
+    this.size++;
     if( this.head != null){
       newNode.before = this.tail
       this.tail.next = newNode;
@@ -48,6 +54,48 @@ class ListaDoble{
         }
     }
   }
+
+  getNodo(pos){
+		let temp = this.head;
+		for(let i = 0; i<pos;i++){
+			temp = temp.next;
+		}
+		return temp;
+	}
+
+  quicksort(){
+    this.ordenar(0,this.size-1)
+  }
+
+  ordenar(min,max) {
+    if (min < max) {
+  
+      let pos = this.partir(min, max);
+      console.log("pos", pos)
+      this.ordenar(min, pos - 1);
+      this.ordenar(pos + 1, max);
+    }}
+
+	change(pos1,pos2){
+		let valor = this.getNodo(pos1).value;
+		this.getNodo(pos1).value  = this.getNodo(pos2).value;
+		this.getNodo(pos2).value = valor;
+	}
+
+	partir(min,max){
+		let pivote = this.getNodo(max).value;
+    
+		let i = (min - 1);
+    
+		for(let j = min; j <= max - 1; j++){
+			if(this.getNodo(j).value > pivote){
+				i++;
+				this.change(i,j);
+			}
+		}
+		this.change(i + 1, max);
+		return (i + 1);
+	}
 
   delete(_value){
     var temporal = this.head;
@@ -99,6 +147,6 @@ lista.insert(68)
 lista.insert(46)
 console.log("desorden")
 lista.print();
-lista.burbuja();
 console.log("orden")
+lista.quicksort();
 lista.print();
