@@ -24,8 +24,8 @@ class AVL{
     //insertar
     insertar(valor){
         this.raiz = this.add(valor,this.raiz)
-
     }
+    
     //insertar recursivo
     add(valor, nodo){
         if(nodo == null) return new Nodo(valor);
@@ -100,7 +100,7 @@ class AVL{
     preorden(){
         this.pre_orden(this.raiz);
     }
-    pre_orden(nodo){
+    pre_orden(nodo){[]
         if(nodo!=null){
             console.log("valor=" +nodo.valor);
             this.pre_orden(nodo.izquierda);

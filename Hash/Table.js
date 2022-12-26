@@ -40,7 +40,7 @@ class Lista{
 class TableHash{
   constructor(size){
     this.amount =0;
-    this.size =  size
+    this.size =  size;
     this.table = [];
     for(let i = 0;i < size ; i++){
       this.table.push(new Lista())
@@ -70,21 +70,19 @@ class TableHash{
       for(let i = 0;i < this.size ; i++){
         this.table.push(new Lista())
       }
-
+      this.amount =0;
       for(let i = 0;i < tempSize ; i++){
         if(!temp[i].isEmpty()){
           var nodo = temp[i].head;
           while(nodo!=null){
             this.insert(nodo.value);
             nodo = nodo.next
-        }
+          }
         }
       }
 
-      console.log(this.table,porcentaje);
-    }else{
-      console.log(this.table,porcentaje)
     }
+    console.log(this.table,porcentaje);
 
   }
 
@@ -102,3 +100,12 @@ tabla.insert(27);
 tabla.insert(28);
 tabla.insert(29);
 tabla.insert(30);
+tabla.insert(31);
+tabla.insert(32);
+tabla.insert(33);
+tabla.insert(34);
+tabla.insert(35);
+tabla.insert(36);
+tabla.insert(37);
+
+//tabla.insert(30);
