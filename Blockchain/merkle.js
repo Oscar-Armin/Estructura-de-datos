@@ -18,13 +18,17 @@ class HashNode {
 class Merkle {
   constructor() {
     this.tophash = null
+    this.size = 0;
 
+    this.datablock = []
     this.datablock = []    
     this.dot = ''
   }
 
   add(value) {
-    this.datablock.push(new DataNode(value))
+    
+    this.datablock[this.size]= new DataNode(value)
+    this.size++;
   }
 
   createTree(exp) {
@@ -48,6 +52,7 @@ class Merkle {
       
       if (tmp.left == null && tmp.right == null) {
         tmp.left = this.datablock[n-index--]
+        //tmp.hash =sha256(tmp.left.value.user+" - "tmp.left.value.movie)
         tmp.hash =sha256(tmp.left.value+"")
       } else {
         tmp.hash = sha256(tmp.left.value+""+tmp.right.value)
@@ -55,8 +60,9 @@ class Merkle {
     }
   }
 
-
   auth() {
+    console.log(this.datablock)
+
     var exp = 1
     while (Math.pow(2, exp) < this.datablock.length) {
       exp += 1
@@ -69,17 +75,39 @@ class Merkle {
     this.genHash(this.tophash, Math.pow(2, exp))
   }
 
+  clear(){
+    this.tophash = null
+    this.datablock = []  
+  }
 }
 
 var index = 0
 
 
 var merkle = new Merkle()
-merkle.add(4)
-merkle.add(5)
-merkle.add(6)
-merkle.add(7)
-merkle.add(8)
+
+class alquiler{
+  constructor(movie,user, precio){
+    this.movie = movie
+    this.user = user
+    this.precio = precio
+  }
+}
+
+function alquilar(data){
+  var num=Math.floor(Math.random()* 100);
+  console.log(data,num)
+  merkle.add(num)
+  console.log(merkle)
+}
+
+
+function mostrar(){
+    merkle.auth()
+    console.log(merkle)
+}
+
+
 
 
 

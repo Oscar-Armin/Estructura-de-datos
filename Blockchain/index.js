@@ -26,15 +26,21 @@ class BlockChain{
   }
 
 	generarBloque(){
-		var date = new Date(Date.now());
+    // Debe ir DD-MM-YY-::HH:MM:SS
+		var date = new Date(Date.now());//revisar formato
+    //Hash Anterior
 		var prevHash = "";
 		if(this.isEmpty()){
 			prevHash = "00"
 		}else{
 			prevHash = this.tail.value.hash
 		}
+    //generamos el arbol
 		merkle.auth()
+    //Data revisar
+    var data= merkle.datablock;
 		var rootmerkle = merkle.tophash.hash
+    merkle.clear();
 		var nonce = 0;
 		var hash = "";
 
@@ -43,7 +49,7 @@ class BlockChain{
 			hash = sha256(this.size+date+prevHash+rootmerkle+nonce);
 			nonce += 1;
 		} 
-		var data = new Bloque(this.size,date,"alquileres",nonce,prevHash,rootmerkle,hash);
+		var data = new Bloque(this.size,date,data,nonce,prevHash,rootmerkle,hash);
 		this.insert(data)
 	}	
 
@@ -109,8 +115,8 @@ class BlockChain{
 
 
 var blockChain = new BlockChain();
-//var time = 300000
-var time = 60000
+var time = 300000
+//var time = 60000
 
 var as = setInterval(()=>{
 
@@ -119,3 +125,8 @@ var as = setInterval(()=>{
 	
 },time)
 
+
+function generarBloque(){
+  blockChain.generarBloque();  
+	console.log(blockChain)
+}
